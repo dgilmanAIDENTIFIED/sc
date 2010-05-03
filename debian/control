@@ -1,13 +1,13 @@
 Source: sc
 Section: math
 Priority: optional
-Build-Depends: libncurses5-dev, bison, debhelper (>=4)
+Build-Depends: libncurses5-dev, bison, debhelper (>>7)
 Maintainer: Adam Majer <adamm@zombino.com>
-Standards-Version: 3.6.1
+Standards-Version: 3.8.4
 
 Package: sc
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Text-based spreadsheet with VI-like keybindings
  "Spreadsheet Calculator" is a much modified version of the public-
  domain spread sheet sc, which was posted to Usenet several years ago

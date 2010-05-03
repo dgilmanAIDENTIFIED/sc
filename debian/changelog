@@ -5,8 +5,10 @@ sc (7.16-3) unstable; urgency=low
   * Add patches supplied by Carsten Hey
     + Stop compressing tutorial.sc file (closes: #514777)
     + Use default colors (closes: #514775)
+  * Bump Standards to 3.8.4.
+  * Bump dependency of debhelper.
 
- -- Adam Majer <adamm@zombino.com>  Mon, 03 May 2010 15:44:40 -0500
+ -- Adam Majer <adamm@zombino.com>  Mon, 03 May 2010 15:52:17 -0500
 
 sc (7.16-2) unstable; urgency=low
 
@@ -86,7 +88,7 @@ sc (6.21-6) unstable; urgency=low
 
  -- Martin Schulze <joey@finlandia.infodrom.north.de>  Fri, 23 Oct 1998 19:21:05 +0200
 
-sc (6.21-5) unstable; urgency=low, closes=25513 23241
+sc (6.21-5) unstable; urgency=low
 
   * Undebhelpering it
   * Recompiled against ncurses3.4 to make it work with that lib (closes:
