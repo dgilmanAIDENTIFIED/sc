@@ -4,8 +4,9 @@ sc (7.16-3) unstable; urgency=low
   * Fixed old changelog entries' bug closing method
   * Add patches supplied by Carsten Hey
     + Stop compressing tutorial.sc file (closes: #514777)
+    + Use default colors (closes: #514775)
 
- -- Adam Majer <adamm@zombino.com>  Mon, 03 May 2010 15:41:36 -0500
+ -- Adam Majer <adamm@zombino.com>  Mon, 03 May 2010 15:44:40 -0500
 
 sc (7.16-2) unstable; urgency=low
 

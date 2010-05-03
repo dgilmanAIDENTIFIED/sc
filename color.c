@@ -31,6 +31,8 @@ static struct crange	*color_base;
 void
 initcolor(int colornum)
 {
+    use_default_colors();
+
     if (!colornum) {
 	int i;
 
