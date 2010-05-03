@@ -478,7 +478,7 @@ yankrow(int arg)
     int i, qtmp;
     char buf[50];
     struct frange *fr;
-    struct ent *obuf;
+    struct ent *obuf=0;
 
     if ((fr = find_frange(currow, curcol)))
 	rs = fr->or_right->row - currow + 1;
@@ -535,7 +535,7 @@ yankcol(int arg)
     int cs = maxcol - curcol + 1;
     int i, qtmp;
     char buf[50];
-    struct ent *obuf;
+    struct ent *obuf=0;
 
     if (cs - arg < 0) {
     	cs = cs > 0 ? cs : 0;
@@ -810,7 +810,7 @@ pullcells(int to_insert)
 
     if (to_insert == 'r') {
 	insertrow(numrows, 0);
-	if (fr = find_frange(currow, curcol))
+	if ((fr = find_frange(currow, curcol)))
 	    deltac = fr->or_left->col - mincol;
 	else {
 	    for (i = 0; i < numrows; i++)
@@ -2279,7 +2279,7 @@ copye(register struct enode *e, int Rdelta, int Cdelta, int r1, int c1,
 	ret->e.r.right.vp = lookat(newrow, newcol);
 	ret->e.r.right.vf = e->e.r.right.vf;
     } else {
-	struct enode *temprange;
+	struct enode *temprange=0;
 
 	if (freeenodes) {
 	    ret = freeenodes;
@@ -2337,8 +2337,7 @@ copye(register struct enode *e, int Rdelta, int Cdelta, int r1, int c1,
 		break;
 	    case 'f':
 	    case 'F':
-		if (range && ret->op == 'F' ||
-			!range && ret->op == 'f')
+		if ((range && ret->op == 'F') || (!range && ret->op == 'f'))
 		    Rdelta = Cdelta = 0;
 		ret->e.o.left = copye(e->e.o.left, Rdelta, Cdelta,
 			r1, c1, r2, c2, transpose);
@@ -2798,7 +2797,7 @@ void
 write_cells(register FILE *f, int r0, int c0, int rn, int cn, int dr, int dc)
 {
     register struct ent **pp;
-    int r, c, rs, cs, mf;
+    int r, c, rs=0, cs=0, mf;
     char *dpointptr;
 
     mf = modflg;
@@ -2861,12 +2860,12 @@ writefile(char *fname, int r0, int c0, int rn, int cn)
 	if ((plugin = findplugin(p+1, 'w')) != NULL) {
 	    if (!plugin_exists(plugin, strlen(plugin), save + 1)) {
 		error("plugin not found");
-		return;
+		return -1;
 	    }
 	    *save = '|';
 	    if ((strlen(save) + strlen(fname) + 20) > PATHLEN) {
 		error("Path too long");
-		return;
+		return -1;
 	    }
 	    sprintf(save + strlen(save), " %s%d:", coltoa(c0), r0);
 	    sprintf(save + strlen(save), "%s%d \"%s\"", coltoa(cn), rn, fname);
@@ -2883,13 +2882,14 @@ writefile(char *fname, int r0, int c0, int rn, int cn)
     }
 #endif /* VMS */
 
-    if (*fname == '\0')
+    if (*fname == '\0'){
 	if (isatty(STDOUT_FILENO) || *curfile != '\0')
 	    fname = curfile;
 	else {
 	    write_fd(stdout, r0, c0, rn, cn);
 	    return (0);
 	}
+    }
 
 #ifdef MSDOS
     namelen = 12;
@@ -2981,12 +2981,12 @@ readfile(char *fname, int eraseflg)
 	if ((plugin = findplugin(p+1, 'r')) != NULL) {
 	    if (!(plugin_exists(plugin, strlen(plugin), save + 1))) {
 		error("plugin not found");
-		return;
+		return -1;
 	    }
 	    *save = '|';
 	    if ((strlen(save) + strlen(fname) + 2) > PATHLEN) {
 		error("Path too long");
-		return;
+		return -1;
 	    }
 	    sprintf(save + strlen(save), " \"%s\"", fname);
 	    eraseflg = 0;

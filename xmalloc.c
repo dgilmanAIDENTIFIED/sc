@@ -4,11 +4,12 @@
  */
 
 #include <curses.h>
+#include <stdlib.h>
 #include "sc.h"
 
-extern char	*malloc();
+/* extern char	*malloc();
 extern char	*realloc();
-extern void	free();
+extern void	free(); */
 void		fatal();
 
 #ifdef SYSV3

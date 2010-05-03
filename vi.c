@@ -17,6 +17,8 @@
 #include <curses.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include "sc.h"
 
 #if defined(REGCOMP)
@@ -40,7 +42,7 @@ void gotobottom();
 
 #define istext(a) (isalnum(a) || ((a) == '_'))
 
-#define bool	int
+/*#define bool	int*/
 #define true	1
 #define false	0
 
@@ -667,8 +669,10 @@ dotab()
     static struct range *nextmatch;
     int len;
 
-    if (linelim > 0 && isalnum(line[linelim-1]) || line[linelim-1] == '_' ||
-	    (completethis && line[linelim-1] == ' ')) {
+    if ((linelim > 0 && isalnum(line[linelim-1])) || 
+    	line[linelim-1] == '_' ||
+	(completethis && line[linelim-1] == ' ')) {
+
 	if (!completethis) {
 	    for (completethis = line + linelim - 1; isalnum(*completethis) ||
 		    *completethis == '_'; completethis--) /* */;
@@ -715,7 +719,7 @@ void
 showdr()
 {
     int			minsr, minsc, maxsr, maxsc;
-    char		*p;
+    /*char		*p;*/
     char		r[12];
     struct frange	*fr = find_frange(currow, curcol);
 
@@ -1566,7 +1570,7 @@ static void
 search_again(bool reverse)
 {
     int prev_match;
-    int found_it;
+    int found_it=0;
 #if !defined(REGCOMP) && !defined(RE_COMP) && !defined(REGCMP)
     char *look_here;
     int do_next;
@@ -1777,7 +1781,7 @@ to_char(int arg, int n)
 static void
 match_paren()
 {
-    register int i;
+    /*register int i;*/
     int nest = 1;
     int tmp = linelim;
 

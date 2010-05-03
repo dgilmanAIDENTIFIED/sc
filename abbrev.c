@@ -19,9 +19,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <curses.h>
+#include <unistd.h>
 #include "sc.h"
 
 static	struct abbrev *abbr_base;
+
+int are_abbrevs(void);
+
 
 void
 add_abbr(char *string)
@@ -87,7 +92,7 @@ add_abbr(char *string)
 	    }
     }
     
-    if (expansion == NULL)
+    if (expansion == NULL){
 	if ((a = find_abbr(string, strlen(string), &prev))) {
 	    error("abbrev \"%s %s\"", a->abbr, a->exp);
 	    return;
@@ -95,6 +100,7 @@ add_abbr(char *string)
 	    error("abreviation \"%s\" doesn't exist", string);
 	    return;
 	}
+    }
  
     if (find_abbr(string, strlen(string), &prev))
 	del_abbr(string);
@@ -122,7 +128,7 @@ void
 del_abbr(char *abbrev)
 {
     struct abbrev *a;
-    struct abbrev **prev;
+    struct abbrev **prev=0;
 
     if (!(a = find_abbr(abbrev, strlen(abbrev), prev))) 
 	return;

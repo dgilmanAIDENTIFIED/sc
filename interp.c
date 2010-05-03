@@ -1572,12 +1572,12 @@ void
 copy(struct ent *dv1, struct ent *dv2, struct ent *v1, struct ent *v2)
 {
     struct ent *p;
-    struct ent *n;
+/*    struct ent *n;*/
     static int minsr = -1, minsc = -1;
     static int maxsr = -1, maxsc = -1;
     int mindr, mindc;
     int maxdr, maxdc;
-    int vr, vc;
+/*    int vr, vc;*/
     int r, c;
     int deltar, deltac;
 
@@ -2066,7 +2066,7 @@ str_search(char *s, int firstrow, int firstcol, int lastrow, int lastcol,
 		    *line = '\0';
 	    }
 	}
-	if (!col_hidden[c])
+	if (!col_hidden[c]){
 	    if (gs.g_type == G_STR) {
 		if (p && p->label
 #if defined(REGCOMP)
@@ -2099,6 +2099,7 @@ str_search(char *s, int firstrow, int firstcol, int lastrow, int lastcol,
 #endif
 #endif
 		    break;
+	}
 	if (r == endr && c == endc) {
 	    error("String not found");
 #if defined(REGCOMP)
@@ -2471,13 +2472,11 @@ clearent(struct ent *v)
 int
 constant(register struct enode *e)
 {
-    return (
-	 e == NULL
+    return e == NULL
 	 || e->op == O_CONST
 	 || e->op == O_SCONST
-	 || e->op == 'm' && constant(e->e.o.left)
-	 || (
-	     e->op != O_VAR
+	 || (e->op == 'm' && constant(e->e.o.left))
+	 || (e->op != O_VAR
 	     && !(e->op & REDUCE)
 	     && constant(e->e.o.left)
 	     && constant(e->e.o.right)
@@ -2491,9 +2490,7 @@ constant(register struct enode *e)
 	     && e->op != LASTCOL
 	     && e->op != NUMITER
 	     && e->op != FILENAME
-             && optimize
-	)
-    );
+             && optimize );
 }
 
 void

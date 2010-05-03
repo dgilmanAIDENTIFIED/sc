@@ -18,6 +18,8 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <unistd.h>
+#include <curses.h>
 #include "sc.h"
 
 static	struct range *rng_base;

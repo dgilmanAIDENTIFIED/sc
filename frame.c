@@ -18,6 +18,9 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <curses.h>
+#include <unistd.h>
 #include "sc.h"
 
 static struct frange *frame_base;

@@ -612,6 +612,9 @@ extern	int  pagesize;	/* If nonzero, use instead of 1/2 screen height */
 extern	int rowlimit;
 extern	int collimit;
 
+void yankr(struct ent *v1, struct ent *v2);
+
+
 #if BSD42 || SYSIII
 
 #ifndef cbreak

@@ -32,7 +32,7 @@ MANMODE=644
 
 # This is where the library file (tutorial) goes.
 #LIBDIR=/usr/local/share/$(name) # reno
-LIBDIR=${prefix}/lib/$(name)
+LIBDIR=${prefix}/share/doc/$(name)
 LIBRARY=-DLIBDIR=\"${LIBDIR}\"
 
 # Set SIMPLE for lex.c if you don't want arrow keys or lex.c blows up

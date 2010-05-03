@@ -212,7 +212,7 @@ flush_saved()
 
     if (dbidx < 0)
 	return;
-    if (p = delbuf[dbidx]) {
+    if ((p = delbuf[dbidx])) {
 	scxfree(delbuffmt[dbidx]);
 	delbuffmt[dbidx] = NULL;
     }
@@ -845,7 +845,7 @@ main (int argc, char  **argv)
 			    break;
 			case 'C':
 			    color = !color;
-			    if (has_colors())
+			    if (has_colors()){
 				if (color) {
 				    attron(COLOR_PAIR(1));
 				    bkgd(COLOR_PAIR(1) | ' ');
@@ -853,6 +853,7 @@ main (int argc, char  **argv)
 				    attron(COLOR_PAIR(0));
 				    bkgd(COLOR_PAIR(0) | ' ');
 				}
+			    }
 			    error("Color %sabled.", color ? "en" : "dis");
 			    break;
 			case 'N':

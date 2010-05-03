@@ -16,6 +16,7 @@
 # include <curses.h>
 #endif /* PSC */
 
+#include <unistd.h>
 #include "sc.h"
 
 /*
