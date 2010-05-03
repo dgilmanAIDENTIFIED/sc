@@ -80,7 +80,7 @@ binary-arch: build install
 	dh_installman
 #	dh_link
 	dh_strip
-	dh_compress
+	dh_compress -X tutorial.sc
 	dh_fixperms
 #	dh_perl
 #	dh_python
