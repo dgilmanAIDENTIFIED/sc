@@ -1,3 +1,14 @@
+sc (7.16-4) unstable; urgency=low
+
+  * debian/patches/Upstream-changes-from-old-versions
+    + contains all patches to upstream changes as one-big-diff. All of the
+      changes should be self-explanatory (variable initialization, always return
+      value from a function, etc.)
+    + adding this quilt patch fixes FTBFS bug introduced by new behaviour
+      to dpkg-source (closes: #643269)
+
+ -- Adam Majer <adamm@zombino.com>  Mon, 26 Sep 2011 23:22:48 -0500
+
 sc (7.16-3) unstable; urgency=low
 
   * Changed maintainer to the new email address, recursively.
