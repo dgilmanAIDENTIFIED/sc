@@ -1,13 +1,22 @@
 sc (7.16-4) unstable; urgency=low
 
+  * debian/patches/function_definitions
+    + use correct function signature instead of relying on implied
+      one which used wrong number of parameters.
+      This was found by Michael Tautschnig. (closes: #748220)
+    + move most of the function declarations from sc.c into sc.h
+    + is_cleared flag is now a macro in standard curses.h - to prevent
+      redefinitions, prepend sc's flag usage with flag_
+
   * debian/patches/Upstream-changes-from-old-versions
     + contains all patches to upstream changes as one-big-diff. All of the
       changes should be self-explanatory (variable initialization, always return
       value from a function, etc.)
-    + adding this quilt patch fixes FTBFS bug introduced by new behaviour
-      to dpkg-source (closes: #643269)
+    + adding this quilt patch fixes FTBFS bug introduced by "new" behaviour
+      to dpkg-source (closes: #643269). Yes, it's been a while since this
+      package was updated.
 
- -- Adam Majer <adamm@zombino.com>  Mon, 26 Sep 2011 23:22:48 -0500
+ -- Adam Majer <adamm@zombino.com>  Sun, 18 May 2014 14:28:50 -0500
 
 sc (7.16-3) unstable; urgency=low
 
