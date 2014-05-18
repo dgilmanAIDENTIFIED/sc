@@ -2159,7 +2159,7 @@ fill(struct ent *v1, struct ent *v2, double start, double inc)
 	    n->v = start;
 	    start += inc;
 	    n->flags |= (is_changed|is_valid);
-	    n->flags &= ~(is_cleared);
+	    n->flags &= ~(flag_is_cleared);
 	}
     }
     else if (calc_order == BYCOLS) {
@@ -2170,7 +2170,7 @@ fill(struct ent *v1, struct ent *v2, double start, double inc)
 	    n->v = start;
 	    start += inc;
 	    n->flags |= (is_changed|is_valid);
-	    n->flags &= ~(is_cleared);
+	    n->flags &= ~(flag_is_cleared);
 	}
     }
     else error(" Internal error calc_order");
@@ -2461,7 +2461,7 @@ clearent(struct ent *v)
     if (v->format)
 	scxfree(v->format);
     v->format = NULL;
-    v->flags = (is_changed|is_cleared);
+    v->flags = (is_changed|flag_is_cleared);
     changed++;
     modflg++;
 }

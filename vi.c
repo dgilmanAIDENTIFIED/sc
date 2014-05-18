@@ -33,13 +33,6 @@ char *regcmp();
 char *regex();
 #endif
 
-void doshell();
-void gohome();
-void leftlimit();
-void rightlimit();
-void gototop();
-void gotobottom();
-
 #define istext(a) (isalnum(a) || ((a) == '_'))
 
 /*#define bool	int*/

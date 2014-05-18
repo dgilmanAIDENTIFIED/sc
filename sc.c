@@ -84,15 +84,6 @@ int brokenpipe = FALSE;	/* Set to true if SIGPIPE is received */
 int	wasforw	= FALSE;
 #endif
 
-void		update();
-void		repaint();
-extern void	doshell();
-extern void	gohome();
-extern void	leftlimit();
-extern void	rightlimit();
-extern void	gototop();
-extern void	gotobottom();
-
 char    curfile[PATHLEN];
 char    revmsg[80];
 
@@ -165,7 +156,7 @@ lookat(int row, int col)
     if (*pp == NULL) {
         if (freeents != NULL) {
 	    *pp = freeents;
-	    (*pp)->flags &= ~is_cleared;
+	    (*pp)->flags &= ~flag_is_cleared;
 	    (*pp)->flags |= may_sync;
 	    freeents = freeents->next;
 	} else
@@ -827,7 +818,7 @@ main (int argc, char  **argv)
 			    break;
 			case 'c':
 			    showcell = (!showcell);
-			    repaint(lastmx, lastmy, fwidth[lastcol]);
+			    repaint(lastmx, lastmy, fwidth[lastcol], 0, A_STANDOUT);
 			    error("Cell highlighting %sabled.",
 				    showcell ? "en" : "dis");
 			    --modflg;	/* negate the modflg++ */

@@ -304,7 +304,7 @@ struct go_save {
 #define is_deleted   0020
 #define is_locked    0040
 #define is_label     0100
-#define is_cleared   0200
+#define flag_is_cleared   0200
 #define may_sync     0400
 
 /* cell error (1st generation (ERROR) or 2nd+ (INVALID)) */
@@ -630,3 +630,14 @@ void yankr(struct ent *v1, struct ent *v2);
 #else
 #include <memory.h>
 #endif
+
+
+void update(int anychanged);
+void repaint(int x, int y, int len, int attron, int attroff);
+
+void     doshell();
+void     gohome();
+void     leftlimit();
+void     rightlimit();
+void     gototop();
+void     gotobottom();

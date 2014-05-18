@@ -2406,7 +2406,7 @@ syncref(register struct enode *e)
     } else {
 	switch (e->op) {
 	    case 'v':
-		if (e->e.v.vp->flags & is_cleared) {
+		if (e->e.v.vp->flags & flag_is_cleared) {
 		    e->op = ERR_;
 		    e->e.o.left = NULL;
 		    e->e.o.right = NULL;
