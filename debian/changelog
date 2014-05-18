@@ -20,6 +20,10 @@ sc (7.16-4) unstable; urgency=low
     + use variadic macros instead allowing us to silence "unused
       calculation results" warnings
 
+  * debian/patches/call_function_not_take_its_address
+    + call a function and use its return value instead of taking its
+      address which is always true.
+
  -- Adam Majer <adamm@zombino.com>  Sun, 18 May 2014 14:28:50 -0500
 
 sc (7.16-3) unstable; urgency=low
