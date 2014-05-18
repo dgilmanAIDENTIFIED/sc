@@ -43,7 +43,7 @@
 #ifdef PSC
 # define error(msg)	fprintf(stderr, msg);
 #else
-# define error isatty(fileno(stdout)) && !move(1,0) && !clrtoeol() && printw
+# define error(format, msg...) (void)(isatty(fileno(stdout)) && !move(1,0) && !clrtoeol() && printw(format, ## msg))
 #endif
 #define	FBUFLEN	1024	/* buffer size for a single field */
 #define	PATHLEN	1024	/* maximum path length */
