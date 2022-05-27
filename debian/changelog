@@ -1,3 +1,9 @@
+sc (7.16-5) UNRELEASED; urgency=medium
+
+  * Migrate repository from alioth to salsa.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Fri, 27 May 2022 20:45:34 +0100
+
 sc (7.16-4) unstable; urgency=low
 
   * debian/patches/function_definitions

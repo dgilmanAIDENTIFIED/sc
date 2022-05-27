@@ -4,8 +4,8 @@ Priority: optional
 Build-Depends: libncurses5-dev, bison, debhelper (>>7)
 Maintainer: Adam Majer <adamm@zombino.com>
 Standards-Version: 3.8.4
-Vcs-Browser: http://git.debian.org/?p=collab-maint/sc.git;a=summary
-Vcs-Git: git://git.debian.org/collab-maint/sc.git
+Vcs-Browser: https://salsa.debian.org/debian/sc
+Vcs-Git: https://salsa.debian.org/debian/sc.git
 
 Package: sc
 Architecture: any
