@@ -331,12 +331,13 @@ LN=ln
 
 #########################################
 # Use this for Linux
-CC=gcc
+#CC=gcc
 # Only use -Wall for testing, since it produces warnings that are of no
 # real effect on the reliability of the program, but may concern some
 # people who don't understand them.
 #CFLAGS=-DSYSV3 -O2 -Wall -pipe
-CFLAGS=-DSYSV3 -O2 -pipe -g
+#CFLAGS=-DSYSV3 -O2 -pipe -g
+override CFLAGS += -DSYSV3 -O2 -Wall -pipe
 LIB=-lm -lncurses
 
 # All of the source files
@@ -355,7 +356,7 @@ DOCS=CHANGES README sc.doc psc.doc tutorial.sc VMS_NOTES torev build.com
 all:	$(name) p$(name) $(name)qref
 
 $(name):$(PAR)  $(OBJS)
-	$(CC) ${LDFLAGS} ${OBJS} ${LIB} -o $(name)
+	$(CXX) ${LDFLAGS} ${LIB_FUZZING_ENGINE} ${OBJS} ${LIB} -o $(name)
 
 # Alternative link for MS-DOS
 #$(name):	$(OBJS)
